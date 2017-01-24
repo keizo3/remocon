@@ -9,6 +9,7 @@ CASE_CHANNEL="チャンネル"
 CASE_VOLUME="ボリューム"
 CASE_AIRCON="エアコン"
 CASE_TEMP="温度"
+CASE_REBOOT="リブート"
 
 case $1 in
     ${CASE_TV}* )
@@ -28,6 +29,9 @@ case $1 in
         DIR="aircon"
         ACTION=${1/${CASE_TEMP}/""}
         REPEAT=3;;
+    ${CASE_REBOOT}* )
+        sudo reboot
+        exit;;
 esac
 
 if [ ${DIR} != "" ] ; then
