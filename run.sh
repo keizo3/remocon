@@ -34,7 +34,7 @@ case $1 in
     ${CASE_LIGHT}* )
         DIR="light"
         ACTION=${1/${CASE_LIGHT}/""}
-        REPEAT=3;;
+        REPEAT=2;;
     ${CASE_CHANNEL}* )
         DIR="tv"
         ACTION=${1/${CASE_CHANNEL}/""};;
