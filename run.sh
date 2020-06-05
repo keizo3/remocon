@@ -4,7 +4,9 @@ DIR=""
 ACTION=""
 REPEAT=1
 
+CASE_COMEBACK="ただいま"
 CASE_TV="テレビ"
+CASE_LIGHT="ライト"
 CASE_CHANNEL="チャンネル"
 CASE_VOLUME="ボリューム"
 CASE_HEATER="暖房"
@@ -18,9 +20,21 @@ CASE_VIDEO="video"
 echo $1 >> /var/log/remoconlog.txt
 
 case $1 in
+    ${CASE_COMEBACK}* )
+        ~/dev/remocon/SendInfraredData /home/pi/dev/remocon/tv/on.txt
+        ~/dev/remocon/SendInfraredData /home/pi/dev/remocon/light/on.txt
+        ~/dev/remocon/SendInfraredData /home/pi/dev/remocon/light/on.txt
+        sleep 2
+        ~/dev/remocon/SendInfraredData /home/pi/dev/remocon/tv/5.txt
+        DIR="tv"
+        ACTION="5";;
     ${CASE_TV}* )
         DIR="tv"
         ACTION=${1/${CASE_TV}/""};;
+    ${CASE_LIGHT}* )
+        DIR="light"
+        ACTION=${1/${CASE_LIGHT}/""}
+        REPEAT=3;;
     ${CASE_CHANNEL}* )
         DIR="tv"
         ACTION=${1/${CASE_CHANNEL}/""};;
